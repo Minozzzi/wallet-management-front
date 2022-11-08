@@ -8,15 +8,11 @@ export const Router: React.FC = () => {
 	return (
 		<BrowserRouter>
 			<Routes>
-				{Object.values(ROUTES).map(route => (
-					<Route
-						key={route.path()}
-						path={route.path()}
-						element={route.component}
-					/>
+				{Object.entries(ROUTES).map(([key, route]) => (
+					<Route key={key} path={route.path()} element={route.component} />
 				))}
 
-				<Route path='*' element={<div>404</div>} />
+				<Route path='*' element={<h1>404</h1>} />
 			</Routes>
 		</BrowserRouter>
 	)
