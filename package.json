@@ -1,6 +1,6 @@
 {
 	"name": "wallet-management-front",
-	"private": true,
+	"private": false,
 	"version": "0.0.0",
 	"type": "module",
 	"scripts": {
@@ -11,8 +11,6 @@
 		"build-storybook": "storybook build"
 	},
 	"dependencies": {
-		"@mui/material": "^5.10.12",
-		"@mui/styled-engine-sc": "^5.10.6",
 		"axios": "^1.1.3",
 		"polished": "^4.2.2",
 		"react": "^18.2.0",
