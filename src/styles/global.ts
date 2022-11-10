@@ -59,39 +59,6 @@ export const GlobalStyles = createGlobalStyle`
     font-size: ${sg.heading[6]};
   }
 
-  .Toastify__toast-container {
-    width: auto;
-    min-width: 320px;
-    max-width: 440px;
-  }
-
-  .Toastify__close-button {
-    color: ${sg.colors.black};
-  }
-
-  .Toastify__toast--success {
-    background: ${sg.colors.white};
-    color: ${sg.themeColors.primary};
-    border: 1px solid ${sg.themeColors.primary};
-
-    span {
-      color: ${sg.colors.grey800};
-    }
-  }
-
-  .Toastify__toast--error {
-    color: ${sg.colors.white};
-  }
-
-  .Toastify__toast--error .Toastify__close-button {
-    color: ${sg.colors.white};
-  }
-
-  .MuiTextField-root > label {
-    font-weight: 600;
-  }
-
-
   *::-webkit-scrollbar {
     width: 10px;
   }
@@ -107,19 +74,4 @@ export const GlobalStyles = createGlobalStyle`
     border: 2px solid transparent;
     background-clip: content-box;
   }
-
-  .MuiMenuItem-root{
-    cursor: pointer;
-
-    &:hover {
-      background-color: ${sg.colors.grey300};
-    }
-  }
-
-  .MuiDialog-container{
-    .MuiDialog-paper {
-      overflow-y: initial;
-    }
-  }
-
 `
