@@ -1,5 +1,6 @@
 {
- "extends": [
-  "@minozzzi/eslint-config"
- ]
+  "extends": [
+    "@minozzzi/eslint-config",
+    "plugin:storybook/recommended"
+  ]
 }
