@@ -15,6 +15,6 @@ export class EmailValidation implements FieldValidation {
 			return null
 		}
 
-		return new InvalidFieldError(this.field)
+		return new InvalidFieldError()
 	}
 }

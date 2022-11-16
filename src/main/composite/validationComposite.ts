@@ -8,7 +8,9 @@ export class ValidationComposite implements Validation {
 		return new ValidationComposite(validators)
 	}
 
-	validate(fieldName: string, input: object): string | null {
+	validate(params: { fieldName: string; input: object }): string | null {
+		const { fieldName, input } = params
+
 		const validators = this.validators.filter(
 			validator => validator.field === fieldName
 		)

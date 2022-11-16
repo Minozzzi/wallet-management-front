@@ -18,7 +18,7 @@ export class CompareFieldsValidation implements FieldValidation {
 			) || []
 
 		if (value !== valueToCompare) {
-			return new InvalidFieldError(this.field)
+			return new InvalidFieldError()
 		}
 
 		return null

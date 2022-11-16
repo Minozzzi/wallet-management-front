@@ -11,6 +11,6 @@ export class RequiredFieldValidation implements FieldValidation {
 
 		if (value) return null
 
-		return new RequiredFieldError(this.field)
+		return new RequiredFieldError()
 	}
 }

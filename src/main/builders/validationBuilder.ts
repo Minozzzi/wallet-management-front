@@ -3,6 +3,7 @@ import {
 	CompareFieldsValidation,
 	EmailValidation,
 	MinLengthValidation,
+	PasswordValidation,
 	RequiredFieldValidation
 } from '@/validation/validators'
 
@@ -35,6 +36,11 @@ export class ValidationBuilder {
 		this.validations.push(
 			new CompareFieldsValidation(this.fieldName, fieldToCompare)
 		)
+		return this
+	}
+
+	password(): ValidationBuilder {
+		this.validations.push(new PasswordValidation(this.fieldName))
 		return this
 	}
 

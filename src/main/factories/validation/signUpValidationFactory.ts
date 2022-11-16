@@ -5,7 +5,7 @@ export const makeSignUpValidation = (): ValidationComposite =>
 	ValidationComposite.build([
 		...ValidationBuilder.field('name').required().build(),
 		...ValidationBuilder.field('username').required().email().build(),
-		...ValidationBuilder.field('password').required().min(8).build(),
+		...ValidationBuilder.field('password').password().build(),
 		...ValidationBuilder.field('passwordConfirmation')
 			.required()
 			.sameAs('password')
