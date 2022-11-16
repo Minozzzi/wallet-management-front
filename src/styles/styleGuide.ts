@@ -1,14 +1,13 @@
 import { breakpoints, media } from './breakpoints'
-import { colors, opacity, themeColors } from './colors'
+import { colors, opacity } from './colors'
 
 export const sg = Object.freeze({
 	opacity,
 	colors,
-	themeColors,
 	breakpoints,
 	media,
 	fontFamily: {
-		primary: "'Inter', sans-serif",
+		primary: "'Poppins', sans-serif",
 		secondary:
 			"'Work Sans', '-apple-system', 'Roboto', 'Helvetica', 'Arial', sans-serif"
 	},
