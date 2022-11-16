@@ -12,8 +12,8 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   body {
-    color: ${sg.colors.grey800};
-    background: ${sg.themeColors.highlight};
+    color: ${sg.colors.grayscale.black};
+    background: ${sg.colors.highlight};
     font-size: ${sg.fontSize.default};
     line-height: normal;
     -webkit-font-smoothing: antialiased;
@@ -69,7 +69,7 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   *::-webkit-scrollbar-thumb {
-    background-color: ${sg.colors.grey500};
+    background-color: ${sg.colors.grayscale.border};
     border-radius: 10px;
     border: 2px solid transparent;
     background-clip: content-box;
