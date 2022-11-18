@@ -107,6 +107,17 @@ export const TextField: React.FC<TextFieldProps> = ({
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [value, validationDependency])
 
+	useEffect(() => {
+		if (touched !== undefined) {
+			if (inputTouched !== touched) setInputTouched(touched)
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [touched])
+
+	useEffect(() => {
+		if (inputTouched) handleCheckErrors()
+	}, [handleCheckErrors, inputTouched])
+
 	return (
 		<S.Container>
 			<S.Label>{label}</S.Label>
