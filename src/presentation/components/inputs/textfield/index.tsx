@@ -87,6 +87,7 @@ export const TextField: React.FC<TextFieldProps> = ({
 
 	const handleOnChange = useCallback(
 		(event: React.ChangeEvent<HTMLInputElement>) => {
+			setInputTouched(true)
 			handleCheckErrors()
 			onChange(event.target.value)
 		},
@@ -96,10 +97,6 @@ export const TextField: React.FC<TextFieldProps> = ({
 	const handleOnBlur = useCallback(() => {
 		handleCheckErrors()
 	}, [handleCheckErrors])
-
-	const handleOnFocus = useCallback(() => {
-		setInputTouched(true)
-	}, [setInputTouched])
 
 	useEffect(() => {
 		handleCheckErrors()
@@ -129,7 +126,6 @@ export const TextField: React.FC<TextFieldProps> = ({
 					value={value}
 					onChange={handleOnChange}
 					onBlur={handleOnBlur}
-					onFocus={handleOnFocus}
 					disabled={disabled}
 					placeholder={placeholder}
 					hasError={!!inputError}
