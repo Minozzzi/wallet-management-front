@@ -85,7 +85,7 @@ export const SignUpPage: React.FC<SignUpPageNamespace.Props> = params => {
 					/>
 
 					<Button disabled={loading} fullWidth onClick={handleSubmit}>
-						{loading ? <Loading size={24} delay={1000} /> : 'Criar conta'}
+						{loading ? <Loading size={24} /> : 'Criar conta'}
 					</Button>
 				</S.Form>
 			</S.Content>

@@ -56,6 +56,8 @@ export const useSignUp = ({
 			if (!formIsValid) return toast.error('Preencha os campos obrigatórios')
 
 			await createAccount.fn(formData)
+
+			toast.success('Conta criada com sucesso')
 		} catch (error) {
 			if (error instanceof UsernameInUseError) return toast.error(error.message)
 

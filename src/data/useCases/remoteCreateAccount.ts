@@ -23,6 +23,8 @@ export class RemoteCreateAccount
 			body: payload
 		})
 
+		if (statusCode === HttpStatusCode.created) return
+
 		if (statusCode === HttpStatusCode.badRequest) throw new UsernameInUseError()
 
 		throw new UnexpectedError()
