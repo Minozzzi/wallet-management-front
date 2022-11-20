@@ -3,6 +3,7 @@ import { useCallback, useMemo, useState } from 'react'
 import toast from 'react-hot-toast'
 
 import { SignUpPageNamespace } from '..'
+import { UsernameInUseError } from '@/domain/errors'
 import { Account } from '@/domain/useCases'
 
 export namespace UseSignUpNamespace {
@@ -29,11 +30,12 @@ export const useSignUp = ({
 
 	const formIsValid = useMemo(
 		() =>
-			Object.keys(formData).every(key =>
-				validation.validate({
-					input: formData,
-					fieldName: key
-				})
+			Object.keys(formData).every(
+				key =>
+					!validation.validate({
+						input: formData,
+						fieldName: key
+					})
 			),
 		[formData, validation]
 	)
@@ -54,8 +56,10 @@ export const useSignUp = ({
 			if (!formIsValid) return toast.error('Preencha os campos obrigatórios')
 
 			await createAccount.fn(formData)
-		} catch {
-			toast.error('Erro ao criar conta')
+		} catch (error) {
+			if (error instanceof UsernameInUseError) return toast.error(error.message)
+
+			toast.error('Erro inesperado, tente novamente')
 		} finally {
 			setLoading(false)
 		}

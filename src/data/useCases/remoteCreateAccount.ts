@@ -11,13 +11,19 @@ export class RemoteCreateAccount
 	) {}
 
 	async fn(params: RemoteCreateAccountNamespace.Params): Promise<void> {
+		const payload = {
+			name: params.name,
+			username: params.username,
+			password: params.password
+		}
+
 		const { statusCode } = await this.httpClient.request({
 			url: this.url,
 			method: 'post',
-			body: params
+			body: payload
 		})
 
-		if (statusCode === HttpStatusCode.forbidden) throw new UsernameInUseError()
+		if (statusCode === HttpStatusCode.badRequest) throw new UsernameInUseError()
 
 		throw new UnexpectedError()
 	}

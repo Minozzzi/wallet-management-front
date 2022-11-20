@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios, { AxiosResponse } from 'axios'
 
 import { HttpClient, HttpRequest, HttpResponse } from '@/data/protocols/http'
 import { env } from '@/main/env'
@@ -14,13 +14,19 @@ export const baseAxios = axios.create({
 
 export class AxiosHttpClient<T = unknown> implements HttpClient<T> {
 	async request(data: HttpRequest): Promise<HttpResponse<T>> {
-		const { status: statusCode, data: body } = await baseAxios.request({
-			...data
-		})
+		let axiosResponse: AxiosResponse
+		try {
+			axiosResponse = await baseAxios.request({
+				...data,
+				data: data.body
+			})
+		} catch (error: any) {
+			axiosResponse = error.response
+		}
 
 		return {
-			statusCode,
-			body
+			statusCode: axiosResponse.status,
+			body: axiosResponse.data
 		}
 	}
 }
