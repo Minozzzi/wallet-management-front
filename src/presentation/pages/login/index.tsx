@@ -1,0 +1,64 @@
+import React from 'react'
+
+import { EnvelopeSimple, LockKey } from 'phosphor-react'
+
+import { useLogin } from './hooks'
+import * as S from './styles'
+import { Button, Loading, TextField } from '@/presentation/components'
+import { Validation } from '@/presentation/protocols'
+
+export type LoginPageProps = {
+	validation: Validation
+}
+
+export const LoginPage: React.FC<LoginPageProps> = params => {
+	const {
+		loading,
+		touched,
+		formData,
+		handleChangeFormData,
+		handleSubmit,
+		handleValidate
+	} = useLogin(params)
+
+	return (
+		<S.Container>
+			<S.ImageBackground />
+
+			<S.Content>
+				<S.Title>Bem vindo novamente</S.Title>
+				<S.Subtitle>
+					Bem vindo novamente! Por favor insira suas credenciais
+				</S.Subtitle>
+
+				<S.Form>
+					<TextField
+						label='Email *'
+						value={formData.username}
+						onChange={handleChangeFormData('username')}
+						placeholder='Digite seu email'
+						disabled={loading}
+						touched={touched}
+						icon={<EnvelopeSimple />}
+						validator={() => handleValidate('username')}
+					/>
+
+					<TextField
+						label='Senha *'
+						value={formData.password}
+						onChange={handleChangeFormData('password')}
+						placeholder='Digite uma senha forte'
+						disabled={loading}
+						touched={touched}
+						icon={<LockKey />}
+						validator={() => handleValidate('password')}
+					/>
+
+					<Button disabled={loading} fullWidth onClick={handleSubmit}>
+						{loading ? <Loading size={24} /> : 'Login'}
+					</Button>
+				</S.Form>
+			</S.Content>
+		</S.Container>
+	)
+}
