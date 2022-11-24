@@ -19,7 +19,7 @@ export const colors = Object.freeze({
 	info: '#0F0BAB',
 	warning: '#FF9500',
 
-	highlight: '#FDFDFD',
+	highlight: '#FAFAFA',
 
 	grayscale: {
 		black: '#343434',
