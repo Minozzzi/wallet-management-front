@@ -9,7 +9,8 @@ export const sg = Object.freeze({
 	fontFamily: {
 		primary: "'Poppins', sans-serif",
 		secondary:
-			"'Work Sans', '-apple-system', 'Roboto', 'Helvetica', 'Arial', sans-serif"
+			"'Work Sans', '-apple-system', 'Roboto', 'Helvetica', 'Arial', sans-serif",
+		logo: 'Mochiy Pop P One'
 	},
 	fontSize: {
 		default: '16px',

@@ -1,8 +1,14 @@
 import { createGlobalStyle } from 'styled-components'
 
 import { sg } from './styleGuide'
+import MochiyPopPOne from '@/assets/fonts/Mochiy_Pop_P_One/MochiyPopPOne-Regular.ttf'
 
 export const GlobalStyles = createGlobalStyle`
+	@font-face {
+		font-family: 'Mochiy Pop P One';
+		src: url(${MochiyPopPOne});
+	}
+
   * {
     margin: 0;
     padding: 0;
