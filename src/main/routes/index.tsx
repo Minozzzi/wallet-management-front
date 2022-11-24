@@ -1,19 +1,19 @@
 import React from 'react'
 
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 
 import { ROUTES } from './routes'
 
+export { ROUTES } from './routes'
+
 export const Router: React.FC = () => {
 	return (
-		<BrowserRouter>
-			<Routes>
-				{Object.entries(ROUTES).map(([key, route]) => (
-					<Route key={key} path={route.path()} element={route.component} />
-				))}
+		<Routes>
+			{Object.entries(ROUTES).map(([key, route]) => (
+				<Route key={key} path={route.path()} element={route.component} />
+			))}
 
-				<Route path='*' element={<h1>404</h1>} />
-			</Routes>
-		</BrowserRouter>
+			<Route path='*' element={<h1>404</h1>} />
+		</Routes>
 	)
 }
