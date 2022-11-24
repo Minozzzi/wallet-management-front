@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from 'react'
+import { FormEvent, useCallback, useMemo, useState } from 'react'
 
 import toast from 'react-hot-toast'
 
@@ -45,11 +45,15 @@ export const useLogin = ({ validation }: LoginPageProps) => {
 		[formData, validation]
 	)
 
-	const handleSubmit = useCallback(async () => {
-		setTouched(true)
-		if (!formIsValid) return toast.error('Preencha os campos obrigatórios')
-		await handleSignIn(formData)
-	}, [formData, formIsValid, handleSignIn])
+	const handleSubmit = useCallback(
+		async (e: FormEvent) => {
+			e.preventDefault()
+			setTouched(true)
+			if (!formIsValid) return toast.error('Preencha os campos obrigatórios')
+			await handleSignIn(formData)
+		},
+		[formData, formIsValid, handleSignIn]
+	)
 
 	return {
 		...authHookData,

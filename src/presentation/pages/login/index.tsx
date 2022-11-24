@@ -31,7 +31,7 @@ export const LoginPage: React.FC<LoginPageProps> = params => {
 					Bem vindo novamente! Por favor insira suas credenciais
 				</S.Subtitle>
 
-				<S.Form>
+				<S.Form onSubmit={handleSubmit}>
 					<TextField
 						label='Email *'
 						value={formData.username}
@@ -54,8 +54,8 @@ export const LoginPage: React.FC<LoginPageProps> = params => {
 						validator={() => handleValidate('password')}
 					/>
 
-					<Button disabled={loading} fullWidth onClick={handleSubmit}>
-						{loading ? <Loading size={24} /> : 'Login'}
+					<Button disabled={loading} fullWidth type='submit'>
+						{loading ? <Loading size={24} /> : 'Entrar'}
 					</Button>
 				</S.Form>
 			</S.Content>
