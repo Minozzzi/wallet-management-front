@@ -5,6 +5,7 @@ import { Route, Routes } from 'react-router-dom'
 import { ROUTES } from './routes'
 
 export { ROUTES } from './routes'
+export { menuItems } from './menu'
 
 export const Router: React.FC = () => {
 	return (

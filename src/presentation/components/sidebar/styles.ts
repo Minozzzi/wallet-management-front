@@ -4,6 +4,7 @@ import styled, { css } from 'styled-components'
 import { sg } from '@/styles'
 
 export const Sidebar = styled.aside`
+	grid-area: Sidebar;
 	position: fixed;
 	top: 0;
 	left: 0;
