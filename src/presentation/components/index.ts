@@ -1,4 +1,6 @@
 export * from './button'
+export * from './header'
 export * from './inputs'
 export * from './loading'
+export * from './popover'
 export * from './sidebar'
