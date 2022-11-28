@@ -1,4 +1,4 @@
-import { HttpClient, HttpStatusCode } from '../protocols/http'
+import { HttpClient, HttpStatusCode } from '@/data/protocols/http'
 import { InvalidCredentialsError, UnexpectedError } from '@/domain/errors'
 import { AccountModel } from '@/domain/models'
 import { Account } from '@/domain/useCases'
