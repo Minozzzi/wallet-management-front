@@ -1,5 +1,5 @@
 export namespace CategoryModel {
-	export type CategoryTableData = {
+	export type TableData = {
 		id: string
 		name: string
 	}

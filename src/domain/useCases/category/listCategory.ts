@@ -6,5 +6,5 @@ export namespace ListCategory {
 	}
 	export type fn = (
 		filters: ListCategory.Filters
-	) => Promise<CategoryModel.CategoryTableData>
+	) => Promise<CategoryModel.TableData>
 }
