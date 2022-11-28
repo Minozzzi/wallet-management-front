@@ -9,12 +9,12 @@ import React, {
 import toast from 'react-hot-toast'
 
 import { useWalletManagementNavigate } from '../hooks/useWalletManagementHistory'
-import { RemoteLoginAccountNamespace } from '@/data/useCases'
+import { RemoteLoginAccountNamespace } from '@/data/useCases/account'
 import { InvalidCredentialsError } from '@/domain/errors'
 import { AccountModel } from '@/domain/models'
 import { Account } from '@/domain/useCases'
 import { makeLocalStorageAdapter } from '@/main/factories/cache'
-import { makeRemoteLoginAccount } from '@/main/factories/useCases'
+import { makeRemoteLoginAccount } from '@/main/factories/useCases/account'
 
 type AuthContextProps = {
 	auth: AccountModel | null

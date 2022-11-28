@@ -3,7 +3,7 @@ import { FormEvent, useCallback, useMemo, useState } from 'react'
 import toast from 'react-hot-toast'
 
 import { LoginPageProps } from '..'
-import { RemoteLoginAccountNamespace } from '@/data/useCases'
+import { RemoteLoginAccountNamespace } from '@/data/useCases/account'
 import { useAuth } from '@/presentation/store'
 
 export const useLogin = ({ validation }: LoginPageProps) => {
