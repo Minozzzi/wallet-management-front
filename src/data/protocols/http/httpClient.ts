@@ -13,10 +13,11 @@ export enum HttpStatusCode {
 	serverError = 500
 }
 
-export type HttpRequest = {
+export type HttpRequest<F = Record<string, string>> = {
 	url: string
 	method: HttpMethod
 	body?: unknown
+	filters?: F
 }
 
 export type HttpResponse<T = unknown> = {
@@ -24,6 +25,6 @@ export type HttpResponse<T = unknown> = {
 	body?: T
 }
 
-export interface HttpClient<T = unknown> {
-	request: (data: HttpRequest) => Promise<HttpResponse<T>>
+export interface HttpClient<T = unknown, F = Record<string, string>> {
+	request: (data: HttpRequest<F>) => Promise<HttpResponse<T>>
 }

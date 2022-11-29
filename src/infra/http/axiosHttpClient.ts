@@ -18,6 +18,10 @@ export class AxiosHttpClient<T = unknown> implements HttpClient<T> {
 		try {
 			axiosResponse = await baseAxios.request({
 				...data,
+				url: this.makeUrlWithFilters({
+					url: data.url,
+					filters: data.filters || {}
+				}),
 				data: data.body
 			})
 		} catch (error: any) {
@@ -28,5 +32,21 @@ export class AxiosHttpClient<T = unknown> implements HttpClient<T> {
 			statusCode: axiosResponse.status,
 			body: axiosResponse.data
 		}
+	}
+
+	private makeUrlWithFilters(params: {
+		filters: Record<string, string>
+		url: string
+	}) {
+		const { filters, url } = params
+
+		if (!Object.keys(filters).length) return url
+
+		const esc = encodeURIComponent
+		const query = Object.keys(filters)
+			.map(k => `${esc(k)}=${esc(filters[k])}`)
+			.join('&')
+
+		return `${url}?${query}`
 	}
 }

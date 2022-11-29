@@ -1,8 +1,10 @@
 import React from 'react'
 
-import { MakeLoginPage } from '../factories/pages'
-import { PrivateRouteProxy } from '../proxies/privateRouteProxy'
-import { MakeSignUpPage } from '@/main/factories/pages/signUpFactory'
+import {
+	MakeSignUpPage,
+	MakeLoginPage,
+	MakeCategoryPage
+} from '@/main/factories/pages/'
 
 type RouteProps = {
 	path: () => string
@@ -22,12 +24,12 @@ export const ROUTES = Object.freeze<RoutesProps>({
 		path: () => 'nova-conta',
 		component: <MakeSignUpPage />
 	},
-	category: {
+	dashboard: {
 		path: () => '/',
-		component: (
-			<PrivateRouteProxy>
-				<h1>abacate</h1>
-			</PrivateRouteProxy>
-		)
+		component: <h1>Under construction!</h1>
+	},
+	category: {
+		path: () => '/category',
+		component: <MakeCategoryPage />
 	}
 })

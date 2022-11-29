@@ -6,7 +6,7 @@ export namespace Category {
 		export type Filters = ListCategoryNamespace.Filters
 		export type TableData = CategoryModel.TableData
 		export interface ListCategory {
-			fn(params: ListCategory.Filters): Promise<CategoryModel.TableData>
+			fn: ListCategoryNamespace.fn
 		}
 	}
 }
