@@ -19,6 +19,7 @@ export const Label = styled.label`
 
 type InputContainerProps = {
 	iconPosition: 'left' | 'right'
+	hasPasswordIcon: boolean
 }
 
 export const InputContainer = styled.div<InputContainerProps>`
@@ -29,18 +30,33 @@ export const InputContainer = styled.div<InputContainerProps>`
 
 	.icon {
 		position: absolute;
-		${({ iconPosition }) => css`
-			${iconPosition}: ${sg.spacing.xlarge};
+		${({ iconPosition, hasPasswordIcon }) => css`
+			${iconPosition}: ${hasPasswordIcon && iconPosition === 'right'
+				? `calc(${sg.spacing.xlarge} + 12px)`
+				: sg.spacing.xlarge};
 		`}
 	}
 
 	.error-icon {
 		color: ${sg.colors.error};
 		position: absolute;
-		right: ${({ iconPosition }) =>
+		right: ${({ iconPosition, hasPasswordIcon }) =>
 			iconPosition === 'right'
-				? `calc(${sg.spacing.xlarge} + ${sg.spacing.xxlarge});`
-				: `${sg.spacing.xlarge};`};
+				? `${
+						hasPasswordIcon
+							? `calc(${sg.spacing.xlarge} + ${sg.spacing.xxlarge} + 24px);`
+							: `calc(${sg.spacing.xlarge} + ${sg.spacing.xxlarge});`
+				  }`
+				: `${
+						hasPasswordIcon
+							? `calc(${sg.spacing.xlarge} + 24px)`
+							: `${sg.spacing.xlarge};`
+				  }`};
+	}
+
+	.password-icon {
+		position: absolute;
+		right: ${sg.spacing.xlarge};
 	}
 `
 

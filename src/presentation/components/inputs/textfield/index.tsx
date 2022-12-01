@@ -4,7 +4,7 @@ import { WarningCircle } from 'phosphor-react'
 
 import * as S from './styles'
 
-type TextFieldProps = {
+export type TextFieldProps = {
 	/**
 	 * It is the label of the text field
 	 */
@@ -14,6 +14,11 @@ type TextFieldProps = {
 	 * It is on change event
 	 */
 	onChange: (value: string) => void
+
+	/**
+	 * It is the type of the text field
+	 */
+	type?: 'text' | 'password'
 
 	/**
 	 * It is the value of the text field
@@ -34,6 +39,11 @@ type TextFieldProps = {
 	 * It is the place where the icon will be placed
 	 */
 	iconPosition?: 'left' | 'right'
+
+	/**
+	 * It is the password icon of the text field
+	 */
+	passwordIcon?: React.ReactNode
 
 	/**
 	 * It is if the text field is disabled
@@ -67,10 +77,12 @@ type TextFieldProps = {
 export const TextField: React.FC<TextFieldProps> = ({
 	label,
 	onChange,
+	type = 'text',
 	value = '',
 	placeholder = '',
 	icon,
 	iconPosition = 'left',
+	passwordIcon,
 	disabled = false,
 	error = '',
 	touched = false,
@@ -119,11 +131,16 @@ export const TextField: React.FC<TextFieldProps> = ({
 		<S.Container>
 			<S.Label>{label}</S.Label>
 
-			<S.InputContainer iconPosition={iconPosition}>
+			<S.InputContainer
+				iconPosition={iconPosition}
+				hasPasswordIcon={!!passwordIcon}
+			>
 				<S.Icon className='icon'>{icon}</S.Icon>
+				<S.Icon className='password-icon'>{passwordIcon}</S.Icon>
 
 				<S.Input
 					value={value}
+					type={type}
 					onChange={handleOnChange}
 					onBlur={handleOnBlur}
 					disabled={disabled}
