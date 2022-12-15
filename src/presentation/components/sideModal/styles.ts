@@ -53,7 +53,7 @@ export const Title = styled.h4`
 	color: ${sg.colors.grayscale.black};
 `
 
-export const Content = styled.form`
+export const Content = styled.div`
 	display: flex;
 	flex-direction: column;
 	flex-grow: 1;

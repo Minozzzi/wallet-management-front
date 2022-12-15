@@ -18,6 +18,10 @@ export type HttpRequest<F = Record<string, string>> = {
 	method: HttpMethod
 	body?: unknown
 	filters?: F
+	pagination?: {
+		page: number
+		perPage?: number
+	}
 }
 
 export type HttpResponse<T = unknown> = {

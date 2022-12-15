@@ -39,6 +39,9 @@ export type ButtonProps = {
 	 */
 	fullWidth?: boolean
 
+	/** It is wrapper className */
+	wrapperClassName?: string
+
 	/**
 	 * It is the Button onClick function
 	 */
@@ -54,6 +57,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 			type = 'button',
 			icon,
 			fullWidth = false,
+			wrapperClassName,
 			onClick = () => null,
 			...props
 		},
@@ -62,7 +66,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 		const buttonTheme = useMemo(() => buttonThemes[theme], [theme])
 
 		return (
-			<S.Wrapper>
+			<S.Wrapper className={wrapperClassName}>
 				<S.Button
 					buttonTheme={buttonTheme}
 					ref={ref}

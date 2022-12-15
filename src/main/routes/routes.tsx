@@ -1,5 +1,6 @@
 import React from 'react'
 
+import { PrivateRouteProxy } from '../proxies'
 import {
 	MakeSignUpPage,
 	MakeLoginPage,
@@ -26,7 +27,11 @@ export const ROUTES = Object.freeze<RoutesProps>({
 	},
 	dashboard: {
 		path: () => '/',
-		component: <h1>Under construction!</h1>
+		component: (
+			<PrivateRouteProxy>
+				<h1>Under construction!</h1>
+			</PrivateRouteProxy>
+		)
 	},
 	category: {
 		path: () => '/category',

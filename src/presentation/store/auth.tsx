@@ -13,6 +13,7 @@ import { RemoteLoginAccountNamespace } from '@/data/useCases/account'
 import { InvalidCredentialsError } from '@/domain/errors'
 import { AccountModel } from '@/domain/models'
 import { Account } from '@/domain/useCases'
+import { baseAxios } from '@/infra/http'
 import { makeLocalStorageAdapter } from '@/main/factories/cache'
 import { makeRemoteLoginAccount } from '@/main/factories/useCases/account'
 
@@ -81,9 +82,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 				localStorageAdapter.LOCAL_STORAGE_KEYS.AUTH,
 				authData
 			)
+			baseAxios.defaults.headers.Authorization = `Bearer ${authData.token}`
 			return
 		}
 
+		delete baseAxios.defaults.headers.Authorization
 		localStorageAdapter.set(localStorageAdapter.LOCAL_STORAGE_KEYS.AUTH)
 	}, [authData, localStorageAdapter])
 

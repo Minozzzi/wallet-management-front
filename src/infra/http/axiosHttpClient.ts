@@ -15,13 +15,19 @@ export const baseAxios = axios.create({
 export class AxiosHttpClient<T = unknown> implements HttpClient<T> {
 	async request(data: HttpRequest): Promise<HttpResponse<T>> {
 		let axiosResponse: AxiosResponse
+
+		const { url: rawUrl, pagination, filters } = data
+
 		try {
+			const url = this.makeUrlWithFiltersAndPagination({
+				url: rawUrl,
+				filters,
+				pagination
+			})
+
 			axiosResponse = await baseAxios.request({
 				...data,
-				url: this.makeUrlWithFilters({
-					url: data.url,
-					filters: data.filters || {}
-				}),
+				url,
 				data: data.body
 			})
 		} catch (error: any) {
@@ -34,19 +40,38 @@ export class AxiosHttpClient<T = unknown> implements HttpClient<T> {
 		}
 	}
 
-	private makeUrlWithFilters(params: {
-		filters: Record<string, string>
+	private makeUrlWithFiltersAndPagination(params: {
 		url: string
+		filters: HttpRequest['filters']
+		pagination: HttpRequest['pagination']
 	}) {
-		const { filters, url } = params
+		const {
+			url,
+			filters = {},
+			pagination = {
+				page: 1,
+				perPage: 10
+			}
+		} = params
 
-		if (!Object.keys(filters).length) return url
+		const paginationKeys = Object.keys(pagination)
+		const filtersKeys = Object.keys(filters)
+
+		if (!filtersKeys.length && !paginationKeys.length) return url
+
+		if (!paginationKeys.includes('perPage')) pagination.perPage = 10
 
 		const esc = encodeURIComponent
-		const query = Object.keys(filters)
-			.map(k => `${esc(k)}=${esc(filters[k])}`)
-			.join('&')
+		const filtersAndPagination = [
+			...Object.entries(pagination).map(
+				([key, value]) => `${esc(key)}=${esc(value)}`
+			),
+			...Object.entries(filters).map(
+				([key, value]) => `${esc(key)}=${esc(value)}`
+			)
+		]
 
+		const query = filtersAndPagination.join('&')
 		return `${url}?${query}`
 	}
 }

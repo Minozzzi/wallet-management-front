@@ -1,6 +1,10 @@
 import React from 'react'
 
-import { makeRemoteListCategory } from '@/main/factories/useCases/category'
+import {
+	makeRemoteCreateCategory,
+	makeRemoteDeleteCategory,
+	makeRemoteListCategory
+} from '@/main/factories/useCases/category'
 import { PrivateRouteProxy } from '@/main/proxies'
 import { CategoryPage } from '@/presentation'
 
@@ -9,7 +13,9 @@ export const MakeCategoryPage: React.FC = () => {
 		<PrivateRouteProxy>
 			<CategoryPage
 				services={{
-					list: makeRemoteListCategory()
+					list: makeRemoteListCategory(),
+					delete: makeRemoteDeleteCategory(),
+					create: makeRemoteCreateCategory()
 				}}
 			/>
 		</PrivateRouteProxy>

@@ -22,14 +22,19 @@ export const TableHead = styled.thead`
 	color: ${sg.colors.grayscale.black};
 `
 
-export const TableHeadCell = styled.th`
-	display: flex;
-	align-items: center;
-	gap: ${sg.spacing.medium};
+type TableHeadCellProps = {
+	cursor?: 'pointer' | 'default'
+}
 
-	text-align: left;
+export const TableHeadCell = styled.th<TableHeadCellProps>`
+	text-align: center;
 	padding: 0px ${sg.spacing.xxlarge};
-	cursor: pointer;
+	cursor: ${props => props.cursor || 'pointer'};
+
+	svg {
+		vertical-align: middle;
+		margin-left: ${sg.spacing.medium};
+	}
 `
 
 export const TableBody = styled.tbody`
@@ -46,7 +51,7 @@ export const TableRow = styled.tr``
 
 export const TableCell = styled.td<{ align?: string }>`
 	padding: ${sg.spacing.xlarge} ${sg.spacing.xxlarge};
-	text-align: left;
+	text-align: center;
 `
 
 export const TableFoot = styled.tfoot`

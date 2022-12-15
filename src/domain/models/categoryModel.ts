@@ -3,4 +3,10 @@ export namespace CategoryModel {
 		id: string
 		name: string
 	}
+	export type CreateData = {
+		name: string
+	}
+	export type UpdateData = {
+		id: string
+	} & CreateData
 }

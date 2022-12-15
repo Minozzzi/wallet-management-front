@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react'
+import { useMemo } from 'react'
 
 import {
 	ColumnDef,
@@ -17,6 +17,11 @@ import { SortAscending, SortDescending } from 'phosphor-react'
 import { Pagination } from '../pagination'
 import * as S from './styles'
 
+export type BaseTableProps<T> = Pick<
+	TableProps<T>,
+	'columns' | 'sorting' | 'setSorting'
+>
+
 export type TableProps<T> = {
 	columns: ColumnDef<T>[]
 	data: T[]
@@ -24,7 +29,8 @@ export type TableProps<T> = {
 	setSorting: OnChangeFn<SortingState>
 	pagination: {
 		totalPages: number
-		pageSize: number
+		paginationTable: PaginationState
+		setPaginationTable: OnChangeFn<PaginationState>
 	}
 }
 
@@ -35,15 +41,10 @@ export const Table = <T extends unknown>({
 	setSorting,
 	pagination
 }: TableProps<T>) => {
-	const { totalPages, pageSize = 10 } = pagination
-
-	const [paginationTable, setPaginationTable] = useState<PaginationState>({
-		pageIndex: 0,
-		pageSize
-	})
+	const { totalPages, paginationTable, setPaginationTable } = pagination
 
 	const {
-		getHeaderGroups,
+		getFlatHeaders,
 		getRowModel,
 		getCanPreviousPage,
 		getCanNextPage,
@@ -59,6 +60,7 @@ export const Table = <T extends unknown>({
 			sorting
 		},
 		pageCount: totalPages,
+		manualPagination: true,
 		onPaginationChange: setPaginationTable,
 		onSortingChange: setSorting,
 		getCoreRowModel: getCoreRowModel(),
@@ -77,25 +79,23 @@ export const Table = <T extends unknown>({
 		<S.Container>
 			<S.Table>
 				<S.TableHead>
-					{getHeaderGroups().map(headerGroup => (
-						<S.TableRow key={headerGroup.id}>
-							{headerGroup.headers.map(header => (
-								<S.TableHeadCell
-									key={header.id}
-									colSpan={header.colSpan}
-									onClick={header.column.getToggleSortingHandler()}
-								>
-									{flexRender(
-										header.column.columnDef.header,
-										header.getContext()
-									)}
-									{{
-										asc: <SortDescending size={16} />,
-										desc: <SortAscending size={16} />
-									}[header.column.getIsSorted() as string] ?? null}
-								</S.TableHeadCell>
-							))}
-						</S.TableRow>
+					{getFlatHeaders().map(header => (
+						<>
+							<S.TableHeadCell
+								key={header.id}
+								colSpan={header.colSpan}
+								onClick={header.column.getToggleSortingHandler()}
+							>
+								{flexRender(
+									header.column.columnDef.header,
+									header.getContext()
+								)}
+								{{
+									asc: <SortDescending size={16} />,
+									desc: <SortAscending size={16} />
+								}[header.column.getIsSorted() as string] ?? null}
+							</S.TableHeadCell>
+						</>
 					))}
 				</S.TableHead>
 

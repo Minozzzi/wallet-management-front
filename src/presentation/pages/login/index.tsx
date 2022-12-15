@@ -4,7 +4,12 @@ import { EnvelopeSimple, LockKey } from 'phosphor-react'
 
 import { useLogin } from './hooks'
 import * as S from './styles'
-import { Button, Loading, TextField } from '@/presentation/components'
+import {
+	Button,
+	Loading,
+	PasswordInput,
+	TextField
+} from '@/presentation/components'
 import { Validation } from '@/presentation/protocols'
 
 export type LoginPageProps = {
@@ -43,7 +48,7 @@ export const LoginPage: React.FC<LoginPageProps> = params => {
 						validator={() => handleValidate('username')}
 					/>
 
-					<TextField
+					<PasswordInput
 						label='Senha *'
 						value={formData.password}
 						onChange={handleChangeFormData('password')}
@@ -51,6 +56,7 @@ export const LoginPage: React.FC<LoginPageProps> = params => {
 						disabled={loading}
 						touched={touched}
 						icon={<LockKey />}
+						// iconPosition='right'
 						validator={() => handleValidate('password')}
 					/>
 

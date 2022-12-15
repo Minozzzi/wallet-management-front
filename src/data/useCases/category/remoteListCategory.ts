@@ -13,11 +13,12 @@ export class RemoteListCategory implements Category.ListCategory.ListCategory {
 		>
 	) {}
 
-	fn: ListCategory.fn = async filters => {
+	fn: ListCategory.fn = async ({ filters, pagination }) => {
 		const { statusCode, body } = await this.httpClient.request({
 			url: this.url,
 			method: 'get',
-			filters
+			filters,
+			pagination
 		})
 
 		if (statusCode === HttpStatusCode.ok && body?.results)

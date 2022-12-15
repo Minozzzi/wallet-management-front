@@ -24,20 +24,22 @@ const Main = styled.main`
 export const PrivateRouteProxy: React.FC<{ children: React.ReactNode }> = ({
 	children
 }) => {
-	const { auth } = useAuth()
+	const { auth, handleSignOut } = useAuth()
 
 	const headerItems = useMemo<PopoverItemProps[]>(
 		() => [
 			{
 				icon: <UserCircle size={22} />,
-				text: 'Perfil'
+				text: 'Perfil',
+				onClick: () => alert('Under Construction')
 			},
 			{
 				icon: <SignOut size={22} />,
-				text: 'Sair'
+				text: 'Sair',
+				onClick: handleSignOut
 			}
 		],
-		[]
+		[handleSignOut]
 	)
 
 	if (auth?.token)
